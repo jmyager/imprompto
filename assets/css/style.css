@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Yantramanav:100');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+}
+
+.intro{
+    height: 100%;
+    width: 100;
+    margin: auto;
+    background: url(../images/background.png);
+    top: 0;
+    background-size: cover;
+}
+
+.intro .inner{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    max-width: none;
+}
+
+.content {
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+}
+
+#logo{
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 50px;
+}
+
+.btn{
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 135%;
+    font-weight: 400;
+    color: #3A6;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: solid #3a6;
+    padding: 10px 20px;
+    transition: all 0.5s;
+    background: none;
+}
+
+.btn:hover{
+    color: #CBDFD6;
+    border: solid #CBDFD6 2px;
+
+}
+
+.main{
+    height: 100%;
+    width: 100;
+    margin: auto;
+    background: url(../images/blue.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    
+    
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+
+#bar{
+    width: 100%;
+}
+
+
+/*--- Media Queries --*/
+@media screen and (max-width: 900px) {
+
+}
+@media screen and (max-width: 768px) {
+
+}
+@media screen and (max-width: 480px) {
+	
+}
