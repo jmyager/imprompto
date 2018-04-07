@@ -75,9 +75,8 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 55%;
-    
-    
+    width: 54%;
+    margin-top: -15%;   
 }
 
 .main-content{
@@ -86,12 +85,37 @@ html, body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    
+    margin-top:50%; 
 }
 
 #bar{
     width: 100%;
 }
+
+.search-button{
+    width: 75%;
+}
+
+#tagline{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -25%;
+    width: 100%;
+}
+
+.results{
+    height: 100%;
+    width: 100;
+    margin: auto;
+    background: url(../images/blue3.png);
+    top: 0;
+    background-size: cover;
+}
+
+
+
 
 
 /*--- Media Queries --*/

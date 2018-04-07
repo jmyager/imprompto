@@ -21,20 +21,23 @@
 					<img src="assets/images/logo.png" alt="Impromptu Logo" id="logo">
                 </section>
                 <section class="os-animation" data-os-animation="bounceInUp" data-os-animation-delay=".1s">
-					<button type="button" class="btn" id="firstbutton">Get Started</button>
+					<a href="#main"><button type="button" class="btn" id="firstbutton">Get Started</button></a>
                 </section>
 			</div>
 		</div>
 	</section>
 	
-	<section class="main">
+	<section class="main" id="main">
 		<div class="main-inner">
 			<div class="main-content">
+				<section class="os-animation" data-os-animation="bounceInUp" data-os-animation-delay=".2s">
+						<img src="assets/images/tagline.png" alt="Super fast, super easy, super imprompto " id="tagline">
+				</section>
 				<div class="ui fluid selection dropdown" id="bar">
 					<input type="hidden" name="Categories">
 					<i class="dropdown icon"></i>
 					<div class="default text">Categories</div>
-					<div class="menu">
+					<div class="menu categories">
 						<div class="item" data-value="fastFood">
 						Fast Food
 						</div>
@@ -54,7 +57,7 @@
 					<input type="hidden" name="Categories">
 					<i class="dropdown icon"></i>
 					<div class="default text">Radius</div>
-					<div class="menu">
+					<div class="menu radius">
 						<div class="item" data-value="5">
 						5 Miles
 						</div>
@@ -76,8 +79,16 @@
 				</div>
 				<br><br>
 				<div class="search-button">
-					<button class="ui basic green button">One Click Search</button>
+					<a href="#results"><button class="fluid ui inverted green button">Search</button></a>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="results" id="results">
+		<div class="results-inner">
+			<div class="results-content">
+				
 			</div>
 		</div>
 	</section>
@@ -89,3 +100,5 @@
 </body>
 </html>
 
+
+	
