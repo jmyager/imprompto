@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
     $('.ui.dropdown').dropdown();
-
+//Smooth scrolling
     // Select all links with hashes
     $('a[href*="#"]')
         // Remove links that don't actually link to anything
@@ -43,7 +43,17 @@ $(document).ready(function () {
             }
             }
             });
+    //grab user data        
+    $(document).on("click","#search",function() {
+        var zip = $("#zip-input").val();
+        console.log(zip);
+        var categories = $('#dropdown1 .selected').data('value');
+        console.log(categories);
+        var radius = $('#dropdown2 .selected').data('value')
+        console.log(radius);
 
+    });
+         
 });
 
 
