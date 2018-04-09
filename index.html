@@ -33,7 +33,7 @@
 				<section class="os-animation" data-os-animation="bounceInUp" data-os-animation-delay=".2s">
 						<img src="assets/images/tagline.png" alt="Super fast, super easy, super imprompto " id="tagline">
 				</section>
-				<div class="ui fluid search selection dropdown" id="bar">
+				<div class="ui fluid search selection dropdown" id="dropdown1">
 					<input type="hidden" name="Categories">
 					<i class="dropdown icon"></i>
 					<div class="default text">Categories</div>
@@ -53,11 +53,11 @@
 					</div>
 				</div>
 				<br><br>
-				<div class="ui fluid selection dropdown" id="bar">
+				<div class="ui fluid selection dropdown" id="dropdown2">
 					<input type="hidden" name="Categories">
 					<i class="dropdown icon"></i>
 					<div class="default text">Radius</div>
-					<div class="menu radius">
+					<div class="menu radius" id="radius">
 						<div class="item" data-value="5">
 						5 Miles
 						</div>
@@ -74,12 +74,12 @@
 				</div>
 				<br><br>
 				<div class="ui left icon input" id="bar">
-					<input type="text" placeholder="Enter your zip code">
+					<input type="text" placeholder="Enter your zip code" id="zip-input">
 					<i class="inverted circular search link icon"></i>
 				</div>
 				<br><br>
 				<div class="search-button">
-					<a href="#results"><button class="fluid ui inverted green button">Search</button></a>
+					<a href="#results"><button class="fluid ui inverted green button" id="search" >Search</button></a>
 				</div>
 			</div>
 		</div>

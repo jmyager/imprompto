@@ -45,18 +45,18 @@ html, body {
     font-family: 'Montserrat', 'sans-serif';
     font-size: 135%;
     font-weight: 400;
-    color: #3A6;
+    color: #CBDFD6;
     text-transform: uppercase;
     text-decoration: none;
-    border: solid #3a6;
+    border: solid #CBDFD6;
     padding: 10px 20px;
     transition: all 0.5s;
     background: none;
 }
 
 .btn:hover{
-    color: #CBDFD6;
-    border: solid #CBDFD6 2px;
+    color: #3A6;
+    border: solid #3A6 2px;
 
 }
 
@@ -86,10 +86,6 @@ html, body {
     align-items: center;
     width: 100%;
     margin-top:50%; 
-}
-
-#bar{
-    width: 100%;
 }
 
 .search-button{
