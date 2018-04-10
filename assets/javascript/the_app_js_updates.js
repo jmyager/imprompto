@@ -1,0 +1,92 @@
+$(document).ready(function () {
+    //Drop Down menu
+    $('.right.menu.open').on("click", function (e) {
+        e.preventDefault();
+        $('.ui.vertical.menu').toggle();
+    });
+
+    $('.ui.dropdown').dropdown();
+
+    // Select all links with hashes
+    $('a[href*="#"]')
+        // Remove links that don't actually link to anything
+        .not('[href="#"]')
+        .not('[href="#0"]')
+        .click(function(event) {
+            // On-page links
+            if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+                && 
+                location.hostname == this.hostname
+                ) {
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                // Does a scroll target exist?
+            if (target.length) {
+                // Only prevent default if animation is actually gonna happen
+                 event.preventDefault();
+                $('html, body').animate({
+                scrollTop: target.offset().top
+                }, 1000, function() {
+                // Callback after animation
+                // Must change focus!
+                var $target = $(target);
+                $target.focus();
+            if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+            }else {
+                $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                $target.focus(); // Set focus again
+            };
+            });
+            }
+            }
+            });
+
+});
+
+//all food is random
+var random = "4d4b7105d754a06374d81259";
+
+//any ethnic  
+var ethnic = ["503288ae91d4c4b30a586d67", "4bf58dd8d48988d1c8941735", "4bf58dd8d48988d142941735", "4bf58dd8d48988d169941735", "52e81612bcbc57f1066b7a01", "52e81612bcbc57f1066b7a02", "4bf58dd8d48988d17a941735", "4bf58dd8d48988d144941735", "52e81612bcbc57f1066b79f2", "52f2ae52bcbc57f1066b8b81", "5744ccdfe4b0c0459246b4d0", "4bf58dd8d48988d109941735", "4bf58dd8d48988d10b941735", "4bf58dd8d48988d10c941735", "4bf58dd8d48988d10d941735", "4bf58dd8d48988d10e941735", "52e81612bcbc57f1066b79ff", "52e81612bcbc57f1066b79fe", "52e81612bcbc57f1066b79fa", "4bf58dd8d48988d10f941735", "52e81612bcbc57f1066b7a06", "4bf58dd8d48988d110941735", "52e81612bcbc57f1066b79fd", "5283c7b4e4b094cb91ec88d7", "4bf58dd8d48988d1be941735", "4bf58dd8d48988d1c0941735", "4bf58dd8d48988d1c1941735", "4bf58dd8d48988d115941735", "52e81612bcbc57f1066b79f9", "52e81612bcbc57f1066b79f8", "52e81612bcbc57f1066b7a04", "4def73e84765ae376e57713a", "5293a7563cf9994f4e043a44", "4bf58dd8d48988d1ce941735", "4bf58dd8d48988d150941735", "4f04af1f2fb6e1c99f3db0bb", "52e928d0bcbc57f1066b7e96"];
+
+//american, BBQ, burgers, cafeteria etc... anything that sounded american. 
+var american = ["4bf58dd8d48988d14e941735", "4bf58dd8d48988d1df931735", "4bf58dd8d48988d16c941735", "4bf58dd8d48988d128941735", "52e81612bcbc57f1066b7a00", "4bf58dd8d48988d146941735", "4bf58dd8d48988d147941735", "4edd64a0c7ddd24ca188df1a", "52e81612bcbc57f1066b7a09", "4d4ae6fc7a7b7dea34424761", "4bf58dd8d48988d16f941735", "4bf58dd8d48988d1bf941735", "4bf58dd8d48988d1cc941735"];
+
+//breakfast is bagel shop, bakery, breakfast spot, cafe, donut and juice bar category
+var breakfast = ["4bf58dd8d48988d179941735", "4bf58dd8d48988d16a941735", "4bf58dd8d48988d143941735", "4bf58dd8d48988d16d941735", "4bf58dd8d48988d148941735", "4bf58dd8d48988d112941735", "4bf58dd8d48988d1dc931735"]; 
+
+//cafe/coffee/tea shop category
+var coffee = ["4bf58dd8d48988d1e0931735", "52e81612bcbc57f1066b7a0c", "4bf58dd8d48988d16d941735"];
+
+//dessert and snack category 
+var dessert = ["4bf58dd8d48988d1d0941735", "4bf58dd8d48988d1c7941735"];
+
+//fast food category 
+var fastFood = ["4bf58dd8d48988d16e941735", "4bf58dd8d48988d120951735", "56aa371be4b08b9a8d57350b", "57558b36e4b065ecebd306dd", "4bf58dd8d48988d14c941735"];
+
+//food truck 
+var foodTruck = "4bf58dd8d48988d1cb941735";
+
+//any restaurant
+var restaurant = "4bf58dd8d48988d1c4941735";
+
+//pizza
+var pizza = "4bf58dd8d48988d1ca941735";
+
+//vegetarian/vegan
+var veg = "4bf58dd8d48988d1d3941735";
+
+//arts and entertainment
+var artsEntertain = "4d4b7104d754a06370d81259";
+
+//local events
+var localEvent = "4d4b7105d754a06373d81259";
+
+//all nightlife/bar/brewery etc
+var nightlife = "4d4b7105d754a06376d81259";
+
+//outdoor and general recreation stuff
+var outdoor = "4d4b7105d754a06377d81259";
