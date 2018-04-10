@@ -1,3 +1,46 @@
+// General Variables
+var radius = "";
+var catID = "";
+
+// -------- Input Category Variables -----------
+
+//all food is random
+var random = "4d4b7105d754a06374d81259";
+
+//any ethnic  
+var ethnic = ["503288ae91d4c4b30a586d67", "4bf58dd8d48988d1c8941735", "4bf58dd8d48988d142941735", "4bf58dd8d48988d169941735", "52e81612bcbc57f1066b7a01", "52e81612bcbc57f1066b7a02", "4bf58dd8d48988d17a941735", "4bf58dd8d48988d144941735", "52e81612bcbc57f1066b79f2", "52f2ae52bcbc57f1066b8b81", "5744ccdfe4b0c0459246b4d0", "4bf58dd8d48988d109941735", "4bf58dd8d48988d10b941735", "4bf58dd8d48988d10c941735", "4bf58dd8d48988d10d941735", "4bf58dd8d48988d10e941735", "52e81612bcbc57f1066b79ff", "52e81612bcbc57f1066b79fe", "52e81612bcbc57f1066b79fa", "4bf58dd8d48988d10f941735", "52e81612bcbc57f1066b7a06", "4bf58dd8d48988d110941735", "52e81612bcbc57f1066b79fd", "5283c7b4e4b094cb91ec88d7", "4bf58dd8d48988d1be941735", "4bf58dd8d48988d1c0941735", "4bf58dd8d48988d1c1941735", "4bf58dd8d48988d115941735", "52e81612bcbc57f1066b79f9", "52e81612bcbc57f1066b79f8", "52e81612bcbc57f1066b7a04", "4def73e84765ae376e57713a", "5293a7563cf9994f4e043a44", "4bf58dd8d48988d1ce941735", "4bf58dd8d48988d150941735", "4f04af1f2fb6e1c99f3db0bb", "52e928d0bcbc57f1066b7e96"];
+
+//american, BBQ, burgers, cafeteria etc... anything that sounded american. 
+var american = ["4bf58dd8d48988d14e941735", "4bf58dd8d48988d1df931735", "4bf58dd8d48988d16c941735", "4bf58dd8d48988d128941735", "52e81612bcbc57f1066b7a00", "4bf58dd8d48988d146941735", "4bf58dd8d48988d147941735", "4edd64a0c7ddd24ca188df1a", "52e81612bcbc57f1066b7a09", "4d4ae6fc7a7b7dea34424761", "4bf58dd8d48988d16f941735", "4bf58dd8d48988d1bf941735", "4bf58dd8d48988d1cc941735"];
+
+//breakfast is bagel shop, bakery, breakfast spot, cafe, donut and juice bar category
+var breakfast = ["4bf58dd8d48988d179941735", "4bf58dd8d48988d16a941735", "4bf58dd8d48988d143941735", "4bf58dd8d48988d16d941735", "4bf58dd8d48988d148941735", "4bf58dd8d48988d112941735", "4bf58dd8d48988d1dc931735"]; 
+
+//cafe/coffee/tea shop category
+var coffee = ["4bf58dd8d48988d1e0931735", "52e81612bcbc57f1066b7a0c", "4bf58dd8d48988d16d941735"];
+
+//dessert and snack category 
+var dessert = ["4bf58dd8d48988d1d0941735", "4bf58dd8d48988d1c7941735"];
+
+//fast food category 
+var fastFood = ["4bf58dd8d48988d16e941735", "4bf58dd8d48988d120951735", "56aa371be4b08b9a8d57350b", "57558b36e4b065ecebd306dd", "4bf58dd8d48988d14c941735"];
+
+//food truck 
+var foodTruck = "4bf58dd8d48988d1cb941735";
+
+//any restaurant
+var restaurant = "4bf58dd8d48988d1c4941735";
+
+//pizza
+var pizza = "4bf58dd8d48988d1ca941735";
+
+//vegetarian/vegan
+var veg = "4bf58dd8d48988d1d3941735";
+
+
+
+
+// On page load
 $(document).ready(function () {
     //Drop Down menu
     $('.right.menu.open').on("click", function (e) {
@@ -6,7 +49,7 @@ $(document).ready(function () {
     });
 
     $('.ui.dropdown').dropdown();
-
+//Smooth scrolling
     // Select all links with hashes
     $('a[href*="#"]')
         // Remove links that don't actually link to anything
@@ -43,7 +86,96 @@ $(document).ready(function () {
             }
             }
             });
+    //grab user data        
+    $(document).on("click","#search",function() {
+        var zip = $("#zip-input").val();
+        var categories = $('#dropdown1 .selected').data('value');
+        radius = $('#dropdown2 .selected').data('value')
+        catID = window[categories];
+    });
 
+
+    // -------- Main App Javascript ---------------------------------
+    
+    // Define variables
+    var lat ="";
+    var long ="";
+    var client_id = 'YX5I20UKAX5YF2SNJPAZR4UF5PCJRXOVHA1LISKDAPOBY1Z0';
+    var client_secret = 'IB4QV2JZNIQ5VFMMZWOUOD5BCJIUEOTGL2AD0G5GD4HYIDUP';
+
+
+    // Define function to make Foursquare AJAX call
+    function getFoursquare() {
+        var url =
+            "https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + lat + "%2C%20" + long + "&categoryId=" + catID + "&radius=" + radius + "&v=20180323";
+        // Ajax Call
+        $.ajax({
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            var j = Math.floor((Math.random() * 10) + 1);
+            console.log(j);
+            var venues = data.response.venues;
+            $(".results-content").empty();
+            $(".results-content").html(
+                `
+                <section>
+                  <h1>${venues[j].name}</h1>
+                  <hr />
+                  <p>${venues[j].location.address}</p>
+                </section>
+                `
+            )
+            console.log(venues[j].location.lat);
+            console.log(venues[j].location.lng);
+        }
+        });
+    }; 
+
+
+        // Ask user for location
+        const geoFindMe = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error, geoOptions);
+            } else {
+                console.log("Geolocation services are not supported by your web browser.");
+            }
+            }
+            
+            // If able to get location, find current position
+            const success = (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const altitude = position.coords.altitude;
+                const accuracy = position.coords.accuracy;
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+
+                
+                // Run the Foursquare API call
+                getFoursquare();
+            }
+
+            // If not able to get location, alert user of the issu
+            const error = (error) => {
+            alert(`Unable to retrieve your location due to ${error.code}: ${error.message}`);
+            }
+
+            // Settings for location finding
+            const geoOptions = {
+            enableHighAccuracy: false,
+            maximumAge: 30000,
+            timeout: 50000
+            };
+
+
+        // Ask user to allow location when button is clicked
+        $("#search").on("click", function() {
+                geoFindMe();
+        });
+
+         
 });
 
 
