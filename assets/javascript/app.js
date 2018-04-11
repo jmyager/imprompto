@@ -23,10 +23,10 @@ var coffee = ["4bf58dd8d48988d1e0931735", "52e81612bcbc57f1066b7a0c", "4bf58dd8d
 var dessert = ["4bf58dd8d48988d1d0941735", "4bf58dd8d48988d1c7941735"];
 
 //fast food category 
-var fastFood = ["4bf58dd8d48988d16e941735", "4bf58dd8d48988d120951735", "56aa371be4b08b9a8d57350b", "57558b36e4b065ecebd306dd", "4bf58dd8d48988d14c941735"];
+var fastfood = ["4bf58dd8d48988d16e941735", "4bf58dd8d48988d120951735", "56aa371be4b08b9a8d57350b", "57558b36e4b065ecebd306dd", "4bf58dd8d48988d14c941735"];
 
 //food truck 
-var foodTruck = "4bf58dd8d48988d1cb941735";
+var foodtruck = "4bf58dd8d48988d1cb941735";
 
 //any restaurant
 var restaurant = "4bf58dd8d48988d1c4941735";
@@ -86,9 +86,35 @@ $(document).ready(function () {
             }
             }
             });
-    //grab user data        
+    
+
+    function GetZipLocation() {
+        var geocoder = new google.maps.Geocoder();
+        var address = document.getElementById("zip-input").value;
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                lat = results[0].geometry.location.lat();
+                console.log("the lat is: " + lat);
+                long = results[0].geometry.location.lng();
+                console.log("the long is: " + long);
+            } else {
+            }
+            getFoursquare();
+            console.log("the latitude is: " + lat);
+            console.log("the longitude is: " + long);
+            });
+    };
+    
+
+            //grab user data        
     $(document).on("click","#search",function() {
         var zip = $("#zip-input").val();
+        if (zip === "") {
+            geoFindMe();
+        }
+        else {
+            GetZipLocation();
+        }
         var categories = $('#dropdown1 .selected').data('value');
         radius = $('#dropdown2 .selected').data('value')
         catID = window[categories];
@@ -117,10 +143,10 @@ $(document).ready(function () {
             var j = Math.floor((Math.random() * 10) + 1);
             console.log(j);
             var venues = data.response.venues;
-            $(".results-content").empty();
-            $(".results-content").html(
+            $(".results-name").empty();
+            $(".results-name").html(
                 `
-                <section>
+                <section id="random">
                   <h1>${venues[j].name}</h1>
                   <hr />
                   <p>${venues[j].location.address}</p>
@@ -168,12 +194,6 @@ $(document).ready(function () {
             maximumAge: 30000,
             timeout: 50000
             };
-
-
-        // Ask user to allow location when button is clicked
-        $("#search").on("click", function() {
-                geoFindMe();
-        });
 
          
 });
