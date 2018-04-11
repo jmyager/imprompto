@@ -143,10 +143,10 @@ $(document).ready(function () {
             var j = Math.floor((Math.random() * 10) + 1);
             console.log(j);
             var venues = data.response.venues;
-            $(".results-content").empty();
-            $(".results-content").html(
+            $(".results-name").empty();
+            $(".results-name").html(
                 `
-                <section>
+                <section id="random">
                   <h1>${venues[j].name}</h1>
                   <hr />
                   <p>${venues[j].location.address}</p>
