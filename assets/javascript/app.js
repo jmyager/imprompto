@@ -179,21 +179,32 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var j = Math.floor((Math.random() * 10) + 1);
                 console.log(j);
+                // Pull a random Number to choose random venue
+                var j = Math.floor((Math.random() * 10) + 1);
                 var venues = data.response.venues;
+                // Check to see if menu url is available before displaying
+                if (venues.hasOwnProperty('menu')){
+                    var menu = "<a href=${venues[j].menu.url} target='_blank'>View Menu</a>";
+                    }
+                else {
+                    menu = "<p>No menu available</p>";
+                }
+                // Empty the results container
                 $(".results-name").empty();
+                // Input our new venue properties into the results container
                 $(".results-name").html(
                     `
-                <section id="random">
-                  <h1>${venues[j].name}</h1>
-                  <hr />
-                  <p>${venues[j].location.address}</p>
-                  <p>${venues[j].location.city} ${venues[j].location.labeledLatLngs.postalCode}</p>
-                  <p>${venues[j].contact.formattedPhone}</p>
-                  <a href=${venues[j].menu.url} target="_blank">View Menu</a>
-                </section>
-                `
+                    <section id="random">
+                    <h1>${venues[j].name}</h1>
+                    <hr />
+                    <p>${venues[j].location.address}</p>
+                    <p>${venues[j].location.city}, ${venues[j].location.postalCode}</p>
+                    <p>${venues[j].contact.formattedPhone}</p>
+                    ${menu}
+                    </section>
+                    
+                    `
                 )
                 // Clear any markers currently in the Google Map
                 function clearMarkers() {

@@ -45,18 +45,18 @@ html, body {
     font-family: 'Montserrat', 'sans-serif';
     font-size: 135%;
     font-weight: 400;
-    color: #CBDFD6;
+    color: #3A6;
     text-transform: uppercase;
     text-decoration: none;
-    border: solid #CBDFD6;
+    border: solid #3A6;
     padding: 10px 20px;
     transition: all 0.5s;
     background: none;
 }
 
 .btn:hover{
-    color: #3A6;
-    border: solid #3A6 2px;
+    color: #CBDFD6;
+    border: solid #CBDFD6 2px;
 
 }
 
@@ -132,7 +132,7 @@ html, body {
 
 .results-name{
     border: 3px solid black;
-    border-left: none;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,7 +153,12 @@ html, body {
 .results-map {
     height: 600px;
     width: 100%;
-   }
+}
+
+#random{
+    padding: 0;
+    margin: 0;
+}
 
 
 
