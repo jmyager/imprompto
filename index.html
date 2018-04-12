@@ -4,13 +4,14 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+	<script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
   	<script src="http://code.jquery.com/jquery-3.3.1.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link href="assets/css/animate.css" rel="stylesheet"/>
     <link href="assets/css/waypoints.css" rel="stylesheet"/>
 	<script src="assets/javascript/jquery.waypoints.min.js" type="text/javascript"></script>
 	<script src="assets/javascript/waypoints.js" type="text/javascript"></script>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
        
 </head>
 <body>
@@ -110,7 +111,7 @@
 		<div class="ui stackable grid">
 			<div class="two wide column"></div>
 			<div class="nine wide column" id="margin">
-				<div class="results-map">
+				<div id="map" class="results-map">
 				
 				</div>
 			</div>
@@ -125,6 +126,7 @@
 
 	
 	</section>
+<script async defer src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyDI7Wc0nPYACVCBx0bFrcaefm2YVMxl1bA&callback=initMap"></script>
 <script src="assets/javascript/app.js" type="text/javascript"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 </body>

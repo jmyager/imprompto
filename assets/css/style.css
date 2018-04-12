@@ -150,7 +150,10 @@ html, body {
     color:  rgb(51, 59, 170);
 }
 
-
+.results-map {
+    height: 600px;
+    width: 100%;
+   }
 
 
 

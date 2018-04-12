@@ -2,6 +2,14 @@
 var radius = "";
 var catID = "";
 
+// Google Map Variables
+var venue;
+var map;
+var myLatLng;
+var venueLat;
+var venueLong;
+var marker;
+
 // -------- Input Category Variables -----------
 
 //all food is random
@@ -14,7 +22,7 @@ var ethnic = ["503288ae91d4c4b30a586d67", "4bf58dd8d48988d1c8941735", "4bf58dd8d
 var american = ["4bf58dd8d48988d14e941735", "4bf58dd8d48988d1df931735", "4bf58dd8d48988d16c941735", "4bf58dd8d48988d128941735", "52e81612bcbc57f1066b7a00", "4bf58dd8d48988d146941735", "4bf58dd8d48988d147941735", "4edd64a0c7ddd24ca188df1a", "52e81612bcbc57f1066b7a09", "4d4ae6fc7a7b7dea34424761", "4bf58dd8d48988d16f941735", "4bf58dd8d48988d1bf941735", "4bf58dd8d48988d1cc941735"];
 
 //breakfast is bagel shop, bakery, breakfast spot, cafe, donut and juice bar category
-var breakfast = ["4bf58dd8d48988d179941735", "4bf58dd8d48988d16a941735", "4bf58dd8d48988d143941735", "4bf58dd8d48988d16d941735", "4bf58dd8d48988d148941735", "4bf58dd8d48988d112941735", "4bf58dd8d48988d1dc931735"]; 
+var breakfast = ["4bf58dd8d48988d179941735", "4bf58dd8d48988d16a941735", "4bf58dd8d48988d143941735", "4bf58dd8d48988d16d941735", "4bf58dd8d48988d148941735", "4bf58dd8d48988d112941735", "4bf58dd8d48988d1dc931735"];
 
 //cafe/coffee/tea shop category
 var coffee = ["4bf58dd8d48988d1e0931735", "52e81612bcbc57f1066b7a0c", "4bf58dd8d48988d16d941735"];
@@ -37,11 +45,42 @@ var pizza = "4bf58dd8d48988d1ca941735";
 //vegetarian/vegan
 var veg = "4bf58dd8d48988d1d3941735";
 
+var venueLat;
+var venueLong;
+var venue;
+var map;
+var myLatLng;
 
+// Define function to initialize Google Map
+function initMap() {
+    myLatLng = { lat: -25.363, lng: 131.044 };
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: myLatLng
+    });
+}
+
+// Define function to center map and drop marker
+function newLocation(newLat, newLng) {
+    map.setCenter({
+        lat: newLat,
+        lng: newLng
+    });
+    var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: myLatLng,
+        map: map,
+        title: venue
+    });
+}
 
 
 // On page load
 $(document).ready(function () {
+    // Hide results pages
+    $("#main").hide();
+    $("#results").hide();
     //Drop Down menu
     $('.right.menu.open').on("click", function (e) {
         e.preventDefault();
@@ -49,44 +88,44 @@ $(document).ready(function () {
     });
 
     $('.ui.dropdown').dropdown();
-//Smooth scrolling
+    //Smooth scrolling
     // Select all links with hashes
     $('a[href*="#"]')
         // Remove links that don't actually link to anything
         .not('[href="#"]')
         .not('[href="#0"]')
-        .click(function(event) {
+        .click(function (event) {
             // On-page links
             if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-                && 
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                &&
                 location.hostname == this.hostname
-                ) {
+            ) {
                 // Figure out element to scroll to
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                 // Does a scroll target exist?
-            if (target.length) {
-                // Only prevent default if animation is actually gonna happen
-                 event.preventDefault();
-                $('html, body').animate({
-                scrollTop: target.offset().top
-                }, 1000, function() {
-                // Callback after animation
-                // Must change focus!
-                var $target = $(target);
-                $target.focus();
-            if ($target.is(":focus")) { // Checking if the target was focused
-            return false;
-            }else {
-                $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-                $target.focus(); // Set focus again
-            };
-            });
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000, function () {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                    });
+                }
             }
-            }
-            });
-    
+        });
+
 
     function GetZipLocation() {
         var geocoder = new google.maps.Geocoder();
@@ -102,12 +141,12 @@ $(document).ready(function () {
             getFoursquare();
             console.log("the latitude is: " + lat);
             console.log("the longitude is: " + long);
-            });
+        });
     };
-    
 
-            //grab user data        
-    $(document).on("click","#search",function() {
+
+    //grab user data        
+    $(document).on("click", "#search", function () {
         var zip = $("#zip-input").val();
         if (zip === "") {
             geoFindMe();
@@ -122,10 +161,10 @@ $(document).ready(function () {
 
 
     // -------- Main App Javascript ---------------------------------
-    
+
     // Define variables
-    var lat ="";
-    var long ="";
+    var lat = "";
+    var long = "";
     var client_id = 'YX5I20UKAX5YF2SNJPAZR4UF5PCJRXOVHA1LISKDAPOBY1Z0';
     var client_secret = 'IB4QV2JZNIQ5VFMMZWOUOD5BCJIUEOTGL2AD0G5GD4HYIDUP';
 
@@ -136,66 +175,100 @@ $(document).ready(function () {
             "https://api.foursquare.com/v2/venues/search?client_id=" + client_id + "&client_secret=" + client_secret + "&ll=" + lat + "%2C%20" + long + "&categoryId=" + catID + "&radius=" + radius + "&v=20180323";
         // Ajax Call
         $.ajax({
-        url: url,
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
-            var j = Math.floor((Math.random() * 10) + 1);
-            console.log(j);
-            var venues = data.response.venues;
-            $(".results-name").empty();
-            $(".results-name").html(
-                `
+            url: url,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var j = Math.floor((Math.random() * 10) + 1);
+                console.log(j);
+                var venues = data.response.venues;
+                $(".results-name").empty();
+                $(".results-name").html(
+                    `
                 <section id="random">
                   <h1>${venues[j].name}</h1>
                   <hr />
                   <p>${venues[j].location.address}</p>
+                  <p>${venues[j].location.city} ${venues[j].location.labeledLatLngs.postalCode}</p>
+                  <p>${venues[j].contact.formattedPhone}</p>
+                  <a href=${venues[j].menu.url} target="_blank">View Menu</a>
                 </section>
                 `
-            )
-            console.log(venues[j].location.lat);
-            console.log(venues[j].location.lng);
-        }
+                )
+                // Clear any markers currently in the Google Map
+                function clearMarkers() {
+                    setMapOnAll(null);
+                }
+                // Pull lat/lng from new venue and plug it into
+                venueLat = (venues[j].location.lat);
+                venueLong = (venues[j].location.lng);
+                myLatLng = { lat: venueLat, lng: venueLong };
+                venue = venues[j].name;
+                // Run function to drop marker
+                newLocation(venueLat, venueLong);
+            }
         });
-    }; 
+    };
 
 
-        // Ask user for location
-        const geoFindMe = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(success, error, geoOptions);
-            } else {
-                console.log("Geolocation services are not supported by your web browser.");
-            }
-            }
-            
-            // If able to get location, find current position
-            const success = (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                const altitude = position.coords.altitude;
-                const accuracy = position.coords.accuracy;
-                lat = position.coords.latitude;
-                long = position.coords.longitude;
+    // Ask user for location
+    const geoFindMe = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error, geoOptions);
+        } else {
+            console.log("Geolocation services are not supported by your web browser.");
+        }
+    }
 
-                
-                // Run the Foursquare API call
-                getFoursquare();
-            }
+    // If able to get location, find current position
+    const success = (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const altitude = position.coords.altitude;
+        const accuracy = position.coords.accuracy;
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
 
-            // If not able to get location, alert user of the issu
-            const error = (error) => {
-            alert(`Unable to retrieve your location due to ${error.code}: ${error.message}`);
-            }
 
-            // Settings for location finding
-            const geoOptions = {
-            enableHighAccuracy: false,
-            maximumAge: 30000,
-            timeout: 50000
-            };
+        // Run the Foursquare API call
+        getFoursquare();
+    }
 
-         
+    // If not able to get location, alert user of the issu
+    const error = (error) => {
+        alert(`Unable to retrieve your location due to ${error.code}: ${error.message}`);
+    }
+
+    // Settings for location finding
+    const geoOptions = {
+        enableHighAccuracy: false,
+        maximumAge: 30000,
+        timeout: 50000
+    };
+
+    // When "get started" is clicked, show the main input content
+    $("#firstbutton").on("click", function () {
+        $("#main").show();
+    });
+
+    // When "search" is clicked, show the results content
+    $("#search").on("click", function () {
+        $("#results").show();
+    })
+
+    // Easter Egg: when escape is clicked, rolling ensues
+    var egg = new Egg();
+    egg
+    .addCode("esc", function() {
+        jQuery('#egggif').fadeIn(500, function() {
+        window.setTimeout(function() { jQuery('#egggif').hide(); }, 5000);
+        }, "escape");
+    })
+    .addHook(function(){
+        window.open("https://www.youtube.com/embed/DLzxrzFCyOs?rel=0&autoplay=1","_self")        
+    })
+    .listen();
+
 });
 
 
