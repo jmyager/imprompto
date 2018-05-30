@@ -203,9 +203,9 @@ $(document).ready(function () {
                     <p>${venues[j].contact.formattedPhone}</p>
                     ${menu}
                     </section>
+                    
                     `
                 )
-                console.log(venues[j].menu.url);
                 // Clear any markers currently in the Google Map
                 function clearMarkers() {
                     setMapOnAll(null);
@@ -215,7 +215,6 @@ $(document).ready(function () {
                 venueLong = (venues[j].location.lng);
                 myLatLng = { lat: venueLat, lng: venueLong };
                 venue = venues[j].name;
-                
                 // Run function to drop marker
                 newLocation(venueLat, venueLong);
             }
