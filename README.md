@@ -15,6 +15,8 @@ Humans are inherently indecisive. Put a group of humans together and suddenly ag
 
 Your group can rest easy, because determining your next adventure is as easy as opening the app and hitting go!
 
+![Screenshot 1](/assets/images/screen1.png?raw=true "Screenshot 1")
+
 ## View the demo
 [Click here](https://shreedamin.github.io/imprompto/) to view the live demo!
 
