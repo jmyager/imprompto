@@ -1,4 +1,4 @@
-# Imprompto
+# ImprompTo
 Find your next spontaneous adventure today!
 
 ## Technologies
