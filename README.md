@@ -17,6 +17,9 @@ Your group can rest easy, because determining your next adventure is as easy as 
 
 ![Screenshot 1](/assets/images/screen1.png?raw=true "Screenshot 1")
 
+## How does it work?
+Once the user has entered a few details, such as category and radius distance, ImprompTo utilizes the Foursquare API to find the top places matching your search. Once it has acquired the top venues, it randomly picks one and delivers it back to the user. The user is able to see the name, location, and details of the venue, as well as call upon the integrated Google Maps API for directions.
+
 ## View the demo
 [Click here](https://shreedamin.github.io/imprompto/) to view the live demo!
 
