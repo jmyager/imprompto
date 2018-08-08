@@ -21,9 +21,9 @@ Your group can rest easy, because determining your next adventure is as easy as 
 
 ## Creators
 
-* Shreedhar P Amin
-* Josh Yager
-* Sharon Prochazka
-* Justin Whittington
+* Shreedhar Amin [Github](https://github.com/shreedamin)
+* Josh Yager [Github](https://github.com/jmyager)
+* Sharon Prochazka [Github](https://github.com/prochazkaCT)
+* Justin Whittington [Github](https://github.com/honduranheat)
 
  
