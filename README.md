@@ -21,6 +21,9 @@ Your group can rest easy, because determining your next adventure is as easy as 
 
 ## Creators
 
-* **Shreedhar P Amin** **Josh Yager** **** **Sharon Prochazka ** **Justin Whittington**
+* Shreedhar P Amin
+* Josh Yager
+* Sharon Prochazka
+* Justin Whittington
 
  
