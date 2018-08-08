@@ -1,34 +1,25 @@
 # Imprompto
+Find your next spontaneous adventure today!
 
-  Situation: 
-  When you travel, you don’t always know the best spots to eat. You end up getting fast food or something generic, or you spend lots of time googling and research.
+## Technologies
+- Javascript
+- Jquery
+- Google Maps API
+- Foursquare API
+- Semantic
+- HTML
+- CSS
 
+## Why Imprompto?
+Humans are inherently indecisive. Put a group of humans together and suddenly agreeing on a decision becomes impossible. Queue Imprompto! The app to silence your hesitation, because it makes the decision for you. Gone are the days of restaurant suggestion round robin! 
 
-  What we did:
-  Now you don’t have to google, because we’ve done it for you. With our unique algorithms. just open our app and use our one click find button.
+Your group can rest easy, because determining your next adventure is as easy as opening the app and hitting go!
 
-  Slogan:
-  Super fast, super easy, super imprompto  
-
-  Why:
-  For when you are out of town and don’t know where to eat or want to try something new.
-
-  What:
-  We suggest random food places to go
-
-## Getting Started
-https://shreedamin.github.io/imprompto/
-
-## Built with
-* [HTML + CSS]
-* [Jquery]
-* [Javascript]
-* [Google Maps API]
-* [Foursquare API]
-* [Semantic UI]
+## View the demo
+[Click here](https://shreedamin.github.io/imprompto/) to view the live demo!
 
 
-## Author(s)
+## Creators
 
 * **Shreedhar P Amin** **Josh Yager** **** **Sharon Prochazka ** **Justin Whittington**
 
